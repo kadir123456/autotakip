@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int currentCount = 0;
   int totalCount = 10;
   
-  // Ayarlar
+  // Ayarlar - MAKSİMUM 10000!
   String scrollDirection = 'down';
   double delaySeconds = 2.0;
   int repeatCount = 10;
@@ -515,7 +515,7 @@ class _HomeScreenState extends State<HomeScreen> {
           
           const SizedBox(height: 10),
           
-          // Tekrar Sayısı
+          // Tekrar Sayısı - MAKSİMUM 10000!
           Text(
             'Kaydırma Sayısı: $repeatCount',
             style: const TextStyle(color: Colors.white70),
@@ -523,8 +523,8 @@ class _HomeScreenState extends State<HomeScreen> {
           Slider(
             value: repeatCount.toDouble(),
             min: 5,
-            max: 100,
-            divisions: 19,
+            max: 10000,  // 10000'E ÇIKTI!
+            divisions: 199,  // 50'şer artırma için
             label: '$repeatCount',
             onChanged: isScrolling ? null : (value) {
               setState(() {
@@ -532,7 +532,52 @@ class _HomeScreenState extends State<HomeScreen> {
               });
             },
           ),
+          
+          // Hızlı seçim butonları
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 8,
+            children: [
+              _buildQuickSelectButton(10),
+              _buildQuickSelectButton(50),
+              _buildQuickSelectButton(100),
+              _buildQuickSelectButton(500),
+              _buildQuickSelectButton(1000),
+              _buildQuickSelectButton(5000),
+              _buildQuickSelectButton(10000),
+            ],
+          ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildQuickSelectButton(int value) {
+    bool isSelected = repeatCount == value;
+    return InkWell(
+      onTap: isScrolling ? null : () {
+        setState(() {
+          repeatCount = value;
+        });
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        decoration: BoxDecoration(
+          color: isSelected ? Colors.purple : Colors.grey.shade800,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isSelected ? Colors.purpleAccent : Colors.transparent,
+            width: 2,
+          ),
+        ),
+        child: Text(
+          '$value',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 12,
+            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+          ),
+        ),
       ),
     );
   }
