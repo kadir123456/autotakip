@@ -1,0 +1,46 @@
+name: tiktok_auto_scroller
+description: TikTok ve diğer uygulamalar için otomatik kaydırma uygulaması
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # UI ve İkonlar
+  cupertino_icons: ^1.0.2
+  flutter_svg: ^2.0.9
+  
+  # Overlay ve Floating Widget
+  flutter_overlay_window: ^0.4.6
+  system_alert_window: ^2.0.0
+  
+  # İzinler
+  permission_handler: ^11.0.1
+  
+  # Native kod köprüsü
+  flutter_platform_channels: ^0.0.1
+  
+  # State Management
+  provider: ^6.1.1
+  
+  # Veri saklama
+  shared_preferences: ^2.2.2
+  
+  # Servis kontrolü
+  flutter_foreground_task: ^6.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/icons/
+    - assets/images/
